@@ -1,0 +1,66 @@
+<h2 class="text-center pt-2">Registration Reactive Form in Angular</h2>
+
+<div class=" container-fluid text-center text-dark bg">
+    <div class="form">
+        <div class="center">
+            <form [formGroup]="myForm" (ngSubmit)="onSubmit()" novalidate class="text-light">
+                <div class="form-group col-sm-12 mb-2 mt-5" id="input">
+                    <input type="text" placeholder="UserName" formControlName="userName" class="form-control p-2"
+                        [ngClass]="{ 'is-invalid': submitted && f.userName.errors }" required>
+                    <div *ngIf="submitted && f.userName.errors" class="invalid-feedback">
+                        <div *ngIf="f.userName.errors.required" class="err">First Name is required</div>
+                    </div>
+                </div>
+                <div class="form-group col-12 mb-2" id="input">
+                    <input type="email" placeholder="Email" formControlName="email" class="form-control p-2"
+                        [ngClass]="{ 'is-invalid': submitted && f.email.errors }" required pattern>
+                    <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+                        <div *ngIf="f.email.errors.required" class="err">Email is required</div>
+                        <div *ngIf="f.email.errors.email" class="err">Email must be a valid email address</div>
+                    </div>
+                </div>
+                <div class="form-group col-12 mb-2" id="input">
+                    <input type="tel" id="pnumber" placeholder="Phone Number" formControlName="tel"
+                        class="form-control p-2" [ngClass]="{'is-invalid': submitted && f.tel.errors }" required
+                        pattern>
+                    <div *ngIf="submitted && f.tel.errors" class="invalid-feedback">
+                        <div *ngIf="f.tel.errors.required" class="err">Phone Number is required</div>
+                        <div *ngIf="f.tel.errors.pattern" class="err">Phone Number in Number</div>
+                    </div>
+                </div>
+                <div class="form-group col-12 mb-2" id="input">
+                    <input type="password" placeholder="Password" formControlName="password" class="form-control p-2"
+                        [ngClass]="{ 'is-invalid': submitted && f.password.errors }" required>
+                    <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+                        <div *ngIf="f.password.errors.required" class="err">Password is required</div>
+                        <div *ngIf="f.password.errors.minlength" class="err">Password must be at least 8 characters
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group col-12 mb-2" id="input">
+                    <input type="password" placeholder="Re-type Password" formControlName="confirmPassword"
+                        class="form-control p-2" [ngClass]="{ 'is-invalid': submitted && f.confirmPassword.errors }"
+                        required>
+                    <div *ngIf="submitted && f.confirmPassword.errors" class="invalid-feedback">
+                        <div *ngIf="f.confirmPassword.errors.required" class="err">Confirm Password is required
+                        </div>
+                        <div *ngIf="f.confirmPassword.errors['mustMatch']" class="err">Passwords must match</div>
+                    </div>
+
+                </div>
+                <div class="form-group col-12 mb-2" id="input">
+                    <input type="checkbox" formControlName="acceptTerms" id="acceptTerms" class="form-check-input p-2"
+                        [ngClass]="{ 'is-invalid': submitted && f.acceptTerms.errors }" required>
+                    <label for="checkbox" class="text-black">I accept terms and conditions.</label>
+                    <div *ngIf="submitted && f.acceptTerms.errors" class="invalid-feedback">Accept Ts & Cs is
+                        required
+                    </div>
+                </div>
+                <div class="button d-flex justify-content-center">
+                    <button class="btn btn-primary p-2 m-1 mb-3">Register</button>
+                    <button class="btn btn-secondary p-2 m-1 mb-3" type="reset" (click)="onReset()">Cancel</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
